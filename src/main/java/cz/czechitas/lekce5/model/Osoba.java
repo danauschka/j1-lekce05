@@ -7,7 +7,16 @@ public class Osoba {
     private String prijmeni;
     private String rodneCislo;
 
+    private boolean zena;
+
+    private String pracovniEmail;
+    private String soukromyEmail;
+
+    private SocialniSite socialniSite;
+
     private Telefon telefon;
+
+    private Adresa adresa;
 
     public void setJmeno(String jmeno) {
         Objects.requireNonNull(jmeno);
@@ -19,10 +28,12 @@ public class Osoba {
     }
 
     public String getJmeno() {
+
         return jmeno;
     }
 
     public String getPrijmeni() {
+
         return prijmeni;
     }
 
@@ -35,7 +46,20 @@ public class Osoba {
         this.prijmeni = prijmeni;
     }
 
+    public String getCeleJmeno() {
+        return jmeno + " " + prijmeni;
+    }
+
+    public boolean isZena() {
+        return this.zena;
+    }
+
+    public void setZena(boolean zena) {
+        this.zena = zena;
+    }
+
     public String getRodneCislo() {
+
         return rodneCislo;
     }
 
@@ -53,15 +77,72 @@ public class Osoba {
     }
 
     public Telefon getTelefon() {
+
         return telefon;
     }
 
     public void setTelefon(Telefon telefon) {
+
         this.telefon = telefon;
     }
 
+    public SocialniSite getSocialniSite() {
+        return socialniSite;
+    }
+
+    public void setSocialniSite(SocialniSite socialniSite) {
+        this.socialniSite = socialniSite;
+    }
+
+    public String getPracovniEmail() {
+        return pracovniEmail;
+    }
+
+    public void setPracovniEmail(String pracovniEmail) {
+        Objects.requireNonNull(pracovniEmail);
+        if (pracovniEmail.isBlank()) {
+            System.err.println("Emailova adresa nemuze byt prazdna");
+            return;
+        }
+        if (!pracovniEmail.contains("@")) {
+            System.err.println("Emailova adresa musi obsahovat @.");
+            return;
+        }
+        this.pracovniEmail = pracovniEmail;
+    }
+
+    public String getSoukromyEmail() {
+        return soukromyEmail;
+    }
+
+    public void setSoukromyEmail(String soukromyEmail) {
+        Objects.requireNonNull(soukromyEmail);
+        if (soukromyEmail.isBlank()) {
+            System.err.println("Emailova adresa nemuze byt prazdna");
+            return;
+        }
+        if (!soukromyEmail.contains("@")) {
+            System.err.println("Emailova adresa musi obsahovat @.");
+            return;
+        }
+        this.soukromyEmail = soukromyEmail;
+    }
+
+    public Adresa getAdresa() {
+        return adresa;
+    }
+
+    public void setAdresa(Adresa adresa) {
+        this.adresa = adresa;
+    }
+
     public String toString() {
+
         return jmeno + " " + prijmeni + " (" + rodneCislo + ")";
+    }
+
+    public String getKontakty() {
+        return soukromyEmail + " " + pracovniEmail + " " + telefon;
     }
 }
 
